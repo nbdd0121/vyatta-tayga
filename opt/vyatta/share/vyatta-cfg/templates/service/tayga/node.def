@@ -1,0 +1,20 @@
+help: TAYGA Stateless NAT64
+
+priority: 901
+
+end: killall tayga; ip link del nat64
+     if [ "$COMMIT_ACTION" != DELETE ]; then
+       echo tun-device nat64 > /etc/tayga.conf
+       echo ipv4-addr "$VAR(ipv4-addr/@)" >> /etc/tayga.conf
+       echo ipv6-addr "$VAR(ipv6-addr/@)" >> /etc/tayga.conf
+       echo dynamic-pool "$VAR(dynamic-pool/@)" >> /etc/tayga.conf
+       echo prefix 64:ff9b::/96 >> /etc/tayga.conf
+
+       tayga --mktun
+       ip link set nat64 up
+       ip addr add "$VAR(ipv4-addr/@)" dev nat64
+       ip addr add "$VAR(ipv6-addr/@)" dev nat64
+       ip route add "$VAR(dynamic-pool/@)" dev nat64
+       ip route add 64:ff9b::/96 dev nat64
+       tayga
+     fi

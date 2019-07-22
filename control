@@ -1,0 +1,9 @@
+Package: tayga
+Source: tayga
+Version: 0.0.20190722-1
+Architecture: mipsel
+Maintainer: Gary Guo <gary@garyguo.net>
+Section: net
+Homepage: http://www.litech.org/tayga
+Description: TAYGA ported for EdgeOS
+

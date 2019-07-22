@@ -1,0 +1,4 @@
+type: ipv4net
+val_help: ipv4net; IPv4 address and prefix length
+help: Dynamic pool for allocating outbound IPv4 address
+
